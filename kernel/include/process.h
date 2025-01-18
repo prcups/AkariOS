@@ -4,13 +4,11 @@
 #include <mem.h>
 #include <exception.h>
 #include <larchintrin.h>
-#include <fat32.h>
 
 const u16 prioRatios[8] = { 100, 200, 300, 400, 500, 600, 700, 800 };
 
 class FileTable {
     u64 processFd = 2;
-    file sdFile[100];
 public:
     u64 Open(const char *filePath);
     void Close(u64 fd);
@@ -57,7 +55,7 @@ class ELFProgram {
 public:
     ELFHeader *header;
     PHTB* phtb;
-    ELFProgram(const char *filename);
+    ELFProgram(ELFHeader *p);
     void ShowInfo();
     void CreateProcess();
 };
